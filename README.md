@@ -3,7 +3,14 @@ This Docker container can be used to deploy a [Node.js](https://nodejs.org) app 
 It retrieves a repository using [git-sync](https://github.com/kubernetes/git-sync) and builds the app using [yarn](https://www.yarnpkg.com/).
 
 ## Usage
-* You can use the image on Docker hub at https://hub.docker.com/r/akloeckner/git-sync-yarn-build .
-* In order to configure `git-sync`, please see its documentation at https://github.com/kubernetes/git-sync .
-* In order to configure `yarn`, please set up your repository according to https://classic.yarnpkg.com/en/docs/creating-a-project .
-* You will likely want to serve your app with another container, such as `nginx` from https://hub.docker.com/_/nginx .
+* You can use the image on Docker hub at https://hub.docker.com/r/akloeckner/git-sync-yarn-build.
+* In order to configure `git-sync`, please see its documentation at https://github.com/kubernetes/git-sync.
+* In order to configure `yarn`, please set up your repository according to https://classic.yarnpkg.com/en/docs/yarn-workflow.
+* You will likely want to serve your app with another container, such as `nginx` from https://hub.docker.com/_/nginx.
+
+## Environment variables
+This image defines the following additional `ENV` variables:
+
+| Variable | Explanation | Default |
+| -------- | ----------- | ------- |
+| `YARN_BUILD_SCRIPT` | defines the script to be called with `yarn run $YARN_BUILD_SCRIPT` | `build` |
