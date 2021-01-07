@@ -1,5 +1,5 @@
 # Base this off of git-sync container
-FROM k8s.gcr.io/git-sync/git-sync:v3.2.1
+FROM k8s.gcr.io/git-sync/git-sync:v3.2.2
 
 # Revert to root user
 USER root:root
