@@ -15,10 +15,13 @@ RUN apt-get update \
  && apt-get update && apt-get install yarn \
  && rm -rf /var/lib/apt/lists/*
 
+# Define default build script to be used by yarn
+ENV YARN_BUILD_SCRIPT=build
+
 # Create sync hook command and instruct git-sync to use it
-RUN echo "#!/bin/sh"  >  /yarn-build.sh \
- && echo "yarn"       >> /yarn-build.sh \
- && echo "yarn build" >> /yarn-build.sh \
+RUN echo '#!/bin/sh'                   >  /yarn-build.sh \
+ && echo 'yarn install'                >> /yarn-build.sh \
+ && echo 'yarn run $YARN_BUILD_SCRIPT' >> /yarn-build.sh \
  && chmod a+x /yarn-build.sh
 ENV GIT_SYNC_HOOK_COMMAND=/yarn-build.sh
 
