@@ -28,3 +28,15 @@ ENV GIT_SYNC_HOOK_COMMAND=/yarn-build.sh
 
 # Set correct git-sync user again
 USER 65533:65533
+
+# fix some Bug in git-sync #325
+USER root:root
+
+RUN echo "git-sync:x:65533:git-sync" >> /etc/group
+
+ENV GIT_SYNC_ROOT=/tmp/git
+RUN mkdir -m 02775 /tmp/git && chown 65533:65533 /tmp/git
+
+USER 65533:65533
+
+ENV HOME=/tmp
